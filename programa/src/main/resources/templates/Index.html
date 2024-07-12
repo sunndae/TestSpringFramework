@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Personas</title>
+    <title>Test Spring</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -56,13 +56,13 @@
         </thead>
         <tbody>
             <!-- Itera sobre la lista de personas y muestra cada persona -->
-            <tr th:each="persona:${personas}">
-                <td th:text="${persona.id}"></td>
-                <td th:text="${persona.name}"></td>
-                <td th:text="${persona.Lastname}"></td>
-                <td th:text="${persona.age}"></td>
-                <!-- Añade más columnas según los atributos de Persona -->
-            </tr>
+			    <tr th:if="${buscar.isPresent()}" th:with="persona=${buscar.get()}">
+			    <td th:text="${persona.id}"></td>
+			    <td th:text="${persona.name}"></td>
+			    <td th:text="${persona.lastname}"></td>
+			    <td th:text="${persona.age}"></td>
+			    <!-- Añade más columnas según los atributos de Persona -->
+			</tr>
         </tbody>
     </table>
 </div>
