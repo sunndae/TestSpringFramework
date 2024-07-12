@@ -23,5 +23,5 @@ public class Persona {
 	private Long id;
 	private String name;
 	private String Lastname;
-	private int age;
+	private Long age;
 }

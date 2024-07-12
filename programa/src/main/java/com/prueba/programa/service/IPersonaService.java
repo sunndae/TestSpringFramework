@@ -13,5 +13,6 @@ public interface IPersonaService {
 	Persona save(Persona persona);
 	
 	void delete(Persona persona);
-
+	
+	void deleteById(Long id);
 }
