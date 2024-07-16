@@ -1,4 +1,4 @@
-package com.prueba.frontend.dto;
+package com.prueba.programa.dto;
 
 import lombok.Data;
 
