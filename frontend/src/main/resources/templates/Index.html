@@ -4,68 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test Spring</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background: #333;
-            color: #fff;
-            padding: 1em 0;
-            text-align: center;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        table, th, td {
-            border: 1px solid #ddd;
-            text-align: left;
-            padding: 8px;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Incluir JavaScript -->
+    <script src="/script.js"></script>
 </head>
 <body>
-
-<header>
-    <h1>Lista de Personas</h1>
-</header>
-
-<div class="container">
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Edad</th>
-                <!-- Agrega más columnas según los atributos de Persona -->
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Itera sobre la lista de personas y muestra cada persona -->
-				<tr th:each="persona:${personas}">
-                <td th:text="${persona.id}"></td>
-                <td th:text="${persona.name}"></td>
-                <td th:text="${persona.Lastname}"></td>
-                <td th:text="${persona.age}"></td>
-                <!-- Añade más columnas según los atributos de Persona -->
-            </tr>
-        </tbody>
-    </table>
-</div>
-
+    <div class="container mt-4">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Edad</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="persona : ${personas}">
+                    <td th:text="${persona.id}"></td>
+                    <td th:text="${persona.name}"></td>
+                    <td th:text="${persona.lastname}"></td>
+                    <td th:text="${persona.age}"></td>
+                    <td>
+                        <a href="#" class="btn btn-warning edit-btn" th:data-id="${persona.id}">Editar</a>
+                        <a href="#" class="btn btn-danger delete-btn" th:data-id="${persona.id}">Eliminar</a>
+                    </td>
+                </tr> 
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
