@@ -5,11 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test Spring</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Incluir JavaScript -->
-    <script src="/script.js"></script>
+
 </head>
 <body>
     <div class="container mt-4">
+        <h1>Lista de Personas</h1>
+        
+        <div class="mb-3">
+            <a th:href="@{/api/persona/crearPersona}" class="btn btn-success">Crear Nueva Persona</a>
+        </div>
+        
         <table class="table">
             <thead>
                 <tr>
@@ -27,12 +32,19 @@
                     <td th:text="${persona.lastname}"></td>
                     <td th:text="${persona.age}"></td>
                     <td>
-                        <a href="#" class="btn btn-warning edit-btn" th:data-id="${persona.id}">Editar</a>
-                        <a href="#" class="btn btn-danger delete-btn" th:data-id="${persona.id}">Eliminar</a>
+                        <a th:href="@{/api/persona/editar/{id}(id=${persona.id})}" class="btn btn-warning">Editar</a>
+                        <a class="btn btn-danger" th:onclick="'FuncionEliminar(' + ${persona.id} + ');'" id="eliminarBtn">Eliminar</a>               
                     </td>
-                </tr> 
+                </tr>
             </tbody>
         </table>
     </div>
+	<!--script src="/EliminarPersona.js"></script-->
+	<!-- Cargar jQuery desde CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script th:src="@{/EliminarPersona.js}"></script>
+    <!-- Cargar SweetAlert desde CDN -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </body>
 </html>
