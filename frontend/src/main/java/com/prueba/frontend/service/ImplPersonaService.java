@@ -39,7 +39,7 @@ public class ImplPersonaService implements IPersonaService{
 
             RestTemplate restTemplate = new RestTemplate();
             ResponseEntity<PersonaDTO> responseEntity = restTemplate
-                    .getForEntity("http://localhost:8010/api/persona/findById" + "/" + id, PersonaDTO.class);
+                    .getForEntity("http://localhost:8010/api/persona/findById/" + id, PersonaDTO.class);
 
             if (responseEntity.getStatusCode().is2xxSuccessful()) {
                 PersonaDTO dto = responseEntity.getBody();
@@ -53,6 +53,7 @@ public class ImplPersonaService implements IPersonaService{
             return null;
         }
     }
+
 
     @Override
     public PersonaDTO saveREST(PersonaDTO PersonaDTO) {

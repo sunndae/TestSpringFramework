@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const personaId = this.getAttribute('data-id');  // Obtener el ID almacenado en el atributo data-id
             console.log('Editar persona con ID:', personaId);
             // Redirigir a una página de edición, ajustar URL según la configuración del servidor
-            window.location.href = `/editar/${personaId}`;
+            window.location.href = '/editar/${personaId}';
         });
     });
 
@@ -20,18 +20,24 @@ document.addEventListener('DOMContentLoaded', () => {
             if (confirm('¿Estás seguro de que deseas eliminar esta persona?')) {
                 console.log('Eliminar persona con ID:', personaId);
                 // Realizar una solicitud fetch para eliminar, ajustar URL según la configuración del servidor
-                fetch(`/eliminar/${personaId}`, { method: 'DELETE' })
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Failed to delete persona');
-                        }
-                        return response.json();  // Procesar la respuesta
-                    })
-                    .then(data => {
-                        console.log('Persona eliminada:', data);
-                        window.location.reload();  // Recargar la página para reflejar los cambios
-                    })
-                    .catch(error => console.error('Error:', error));
+                fetch('/api/persona/deleteById/' + personaId, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => {
+                    console.log('Respuesta del servidor:', response);
+                    if (!response.ok) {
+                        throw new Error('Failed to delete persona');
+                    }
+                    return response.text();  // Procesar la respuesta como texto
+                })
+                .then(data => {
+                    console.log('Persona eliminada:', data);
+                    window.location.reload();  // Recargar la página para reflejar los cambios
+                })
+                .catch(error => console.error('Error:', error));
             }
         });
     });
